@@ -58,6 +58,7 @@
             "@auto-scripts"
         ]
     },
+
     "conflict": {
         "symfony/symfony": "*"
     },
