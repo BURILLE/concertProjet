@@ -1,6 +1,7 @@
 <?php
 
 use App\Kernel;
+use Symfony\Bundle\TwigBundle;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
