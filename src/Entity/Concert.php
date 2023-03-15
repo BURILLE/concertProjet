@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ConcertRepository;
+use App\Repository\ShowRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ConcertRepository::class)]
+#[ORM\Entity(repositoryClass: ShowRepository::class)]
+#[ORM\Table(name: '`concert`')]
 class Concert
 {
     #[ORM\Id]
@@ -16,52 +17,26 @@ class Concert
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column]
-    private ?int $nbPlaces = null;
-
-    #[ORM\Column]
-    private ?int $numConcert = null;
-
-    #[ORM\ManyToMany(targetEntity: Artist::class)]
-    private Collection $joue;
-
-    /*
     #[ORM\Column(length: 255)]
-    private ?string $no = null;
-*/
-    /*
-    #[ORM\ManyToMany(targetEntity: History::class)]
-    private Collection $construire;
-    */
+    private ?string $tourName = null;
+
+    #[ORM\OneToOne(inversedBy: 'concert', cascade: ['persist', 'remove'])]
+    private ?Hall $hall = null;
+
+    #[ORM\ManyToMany(targetEntity: Band::class, inversedBy: 'concerts')]
+    private Collection $bands;
 
     public function __construct()
     {
-        $this->joue = new ArrayCollection();
-        //$this->construire = new ArrayCollection();
+        $this->bands = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -76,92 +51,51 @@ class Concert
         return $this;
     }
 
-    public function getNbPlaces(): ?int
+    public function getTourName(): ?string
     {
-        return $this->nbPlaces;
+        return $this->tourName;
     }
 
-    public function setNbPlaces(int $nbPlaces): self
+    public function setTourName(string $tourName): self
     {
-        $this->nbPlaces = $nbPlaces;
+        $this->tourName = $tourName;
 
         return $this;
     }
 
-    public function getNumConcert(): ?int
+    public function getHall(): ?Hall
     {
-        return $this->numConcert;
+        return $this->hall;
     }
 
-    public function setNumConcert(int $numConcert): self
+    public function setHall(?Hall $hall): self
     {
-        $this->numConcert = $numConcert;
+        $this->hall = $hall;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Artist>
+     * @return Collection<int, band>
      */
-    public function getJoue(): Collection
+    public function getBands(): Collection
     {
-        return $this->joue;
+        return $this->bands;
     }
 
-    public function addJoue(Artist $joue): self
+    public function addBand(band $band): self
     {
-        if (!$this->joue->contains($joue)) {
-            $this->joue->add($joue);
+        if (!$this->bands->contains($band)) {
+            $this->bands->add($band);
         }
 
         return $this;
     }
 
-    public function removeJoue(Artist $joue): self
+    public function removeBand(band $band): self
     {
-        $this->joue->removeElement($joue);
+        $this->bands->removeElement($band);
 
         return $this;
     }
-
-    /*
-    public function getNo(): ?string
-    {
-        return $this->no;
-    }
-
-    public function setNo(string $no): self
-    {
-        $this->no = $no;
-
-        return $this;
-    }
-    */
-
-    /**
-     * @return Collection<int, History>
-     */
-
-    /*
-    public function getConstruire(): Collection
-    {
-        return $this->construire;
-    }
-
-    public function addConstruire(History $construire): self
-    {
-        if (!$this->construire->contains($construire)) {
-            $this->construire->add($construire);
-        }
-
-        return $this;
-    }
-
-    public function removeConstruire(History $construire): self
-    {
-        $this->construire->removeElement($construire);
-
-        return $this;
-    }
-    */
 }

@@ -7,7 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<HallFixtures>
+ * @extends ServiceEntityRepository<Hall>
  *
  * @method Hall|null find($id, $lockMode = null, $lockVersion = null)
  * @method Hall|null findOneBy(array $criteria, array $orderBy = null)
@@ -40,7 +40,7 @@ class HallRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return HallFixtures[] Returns an array of HallFixtures objects
+//     * @return Hall[] Returns an array of Hall objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class HallRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?HallFixtures
+//    public function findOneBySomeField($value): ?Hall
 //    {
 //        return $this->createQueryBuilder('h')
 //            ->andWhere('h.exampleField = :val')
