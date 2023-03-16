@@ -31,7 +31,7 @@ class Member
     private ?string $picture = null;
 
     #[ORM\ManyToOne(inversedBy: 'members')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Band $band = null;
 
     public function getId(): ?int
