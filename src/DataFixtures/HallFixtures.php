@@ -2,43 +2,30 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\Hall;
-use App\Entity\ConcertHall;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
-class HallFixtures extends Fixture
+class HallFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const ROOM_1 = 'h1';
-    public const ROOM_2 = 'h2';
-    public const ROOM_3 = 'h3';
-
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $h1 = new Hall();
-        $h1->setName('Red Hall')
-            ->setCapacity(500)
-            ->setAvailable(true);
-        $manager->persist($h1);
+        $hall = new Hall();
+        $hall->setName('salle1')
+        ->setContact('tot@gmail.com')
+        ->setAdress('15 rue de jesaispassou, 0000 null-part');
 
-        $h2 = new Hall();
-        $h2->setName('MegaBigHall')
-            ->setCapacity(1500)
-            ->setAvailable(true);
-        $manager->persist($h2);
+        $hall->setSeDeroule($this->getReference(ConcertFixtures::CONCERT_SEDEROULE));
 
-        $h3 = new Hall();
-        $h3->setName('Grease Hall')
-            ->setCapacity(500)
-            ->setAvailable(false);
-        $manager->persist($h3);
+        $manager->persist($hall);
 
         $manager->flush();
-
-        // other fixtures can get this object using the UserFixtures::ADMIN_USER_REFERENCE constant
-        $this->addReference(self::ROOM_1, $h1);
-        $this->addReference(self::ROOM_2, $h2);
-        $this->addReference(self::ROOM_3, $h3);
     }
-
+    public function getDependencies():array
+    {
+        return array(
+            ConcertFixtures::class,
+        );
+    }
 }
