@@ -16,18 +16,15 @@ class Hall
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $capacity = null;
+    #[ORM\Column(length: 255)]
+    private ?string $contact = null;
 
-    #[ORM\Column]
-    private ?bool $available = null;
+    #[ORM\Column(length: 255)]
+    private ?string $adress = null;
 
-    #[ORM\ManyToOne(inversedBy: 'halls')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?ConcertHall $concertHall = null;
-
-    #[ORM\OneToOne(mappedBy: 'hall', cascade: ['persist', 'remove'])]
-    private ?Concert $concert = null;
+    private ?Concert $seDeroule = null;
 
     public function getId(): ?int
     {
@@ -46,60 +43,38 @@ class Hall
         return $this;
     }
 
-    public function getCapacity(): ?int
+    public function getContact(): ?string
     {
-        return $this->capacity;
+        return $this->contact;
     }
 
-    public function setCapacity(int $capacity): self
+    public function setContact(string $contact): self
     {
-        $this->capacity = $capacity;
+        $this->contact = $contact;
 
         return $this;
     }
 
-    public function isAvailable(): ?bool
+    public function getAdress(): ?string
     {
-        return $this->available;
+        return $this->adress;
     }
 
-    public function setAvailable(bool $available): self
+    public function setAdress(string $adress): self
     {
-        $this->available = $available;
+        $this->adress = $adress;
 
         return $this;
     }
 
-    public function getConcertHall(): ?ConcertHall
+    public function getSeDeroule(): ?Concert
     {
-        return $this->concertHall;
+        return $this->seDeroule;
     }
 
-    public function setConcertHall(?ConcertHall $concertHall): self
+    public function setSeDeroule(Concert $seDeroule): self
     {
-        $this->concertHall = $concertHall;
-
-        return $this;
-    }
-
-    public function getConcert(): ?Concert
-    {
-        return $this->concert;
-    }
-
-    public function setConcert(?Concert $concert): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($concert === null && $this->concert !== null) {
-            $this->concert->setHall(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($concert !== null && $concert->getHall() !== $this) {
-            $concert->setHall($this);
-        }
-
-        $this->concert = $concert;
+        $this->seDeroule = $seDeroule;
 
         return $this;
     }
