@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ShowRepository::class)]
-#[ORM\Table(name: '`concert`')]
+#[ORM\Table(name: '`show`')]
 class Concert
 {
     #[ORM\Id]
@@ -26,7 +26,7 @@ class Concert
     #[ORM\OneToOne(inversedBy: 'concert', cascade: ['persist', 'remove'])]
     private ?Hall $hall = null;
 
-    #[ORM\ManyToMany(targetEntity: Band::class, inversedBy: 'concerts')]
+    #[ORM\ManyToMany(targetEntity: band::class, inversedBy: 'concerts')]
     private Collection $bands;
 
     public function __construct()
