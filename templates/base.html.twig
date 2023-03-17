@@ -11,6 +11,9 @@
 <body>
 {% block navbar %}
     {% include('navbar.html.twig') %}
+    {% include('DefaultBundle::navbar.html.twig') %}
+    {% include('::navbar.html.twig') %}
+    {% include('DefaultBundle:Default:navbar.html.twig') %}
 {% endblock %}
 
 {% block body %}
