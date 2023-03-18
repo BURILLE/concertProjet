@@ -26,6 +26,33 @@ class BandFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($b1);
 
         $manager->flush();
+        $b2 = new Band();
+        $b2->setName('love patrol alpha')
+            ->setStyle('pop')
+            ->setPicture('love_patrol_alpha.webp')
+            ->setCreationYear(new \DateTime(2017))
+            ->setLastAlbumName('Taking Over Midnight')
+            ->addMember($this->getReference(MemberFixtures::LPA_1))
+            ->addMember($this->getReference(MemberFixtures::LPA_2))
+            ->addMember($this->getReference(MemberFixtures::LPA_3));
+
+        $manager->persist($b2);
+
+        $manager->flush();
+
+        $manager->flush();
+        $b2 = new Band();
+        $b2->setName('Deadlift Lolita')
+            ->setStyle('Metal Kawaii japonais')
+            ->setPicture('deadlift_lolita.jpg')
+            ->setCreationYear(new \DateTime(2017))
+            ->setLastAlbumName('Muscle Cocktail')
+            ->addMember($this->getReference(MemberFixtures::DL_1))
+            ->addMember($this->getReference(MemberFixtures::DL_2));
+
+        $manager->persist($b2);
+
+        $manager->flush();
     }
 
     public function getDependencies(): array

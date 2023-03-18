@@ -16,6 +16,11 @@ class MemberFixtures extends Fixture
     public const KORN_3 = 'a3';
     public const KORN_4 = 'a4';
     public const KORN_5 = 'a5';
+    public const LPA_1 = 'b1';
+    public const LPA_2 = 'b2';
+    public const LPA_3 = 'b3';
+    public const DL_1 = 'c1';
+    public const DL_2 = 'c2';
 
     /**
      * @param ObjectManager $manager
@@ -62,6 +67,46 @@ class MemberFixtures extends Fixture
             ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '02/11/1969'));
         $manager->persist($a5);
 
+        $b1 = new Member();
+        $b1->setName('Pines')
+            ->setFirstName('Mabel')
+            ->setJob('Chanteur')
+            ->setPicture('mabel.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '31/08/1999'));
+        $manager->persist($b1);
+
+        $b2 = new Member();
+        $b2->setName('Pines')
+            ->setFirstName('Dipper')
+            ->setJob('Chanteur')
+            ->setPicture('dipper.webp')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '31/08/1952'));
+        $manager->persist($b2);
+
+        $b3 = new Member();
+        $b3->setName('Pines')
+            ->setFirstName('Stan')
+            ->setJob('Chanteur')
+            ->setPicture('stan.avif')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '15/06/1999'));
+        $manager->persist($b3);
+
+        $c1 = new Member();
+        $c1->setName('Magarey')
+            ->setFirstName('Richard')
+            ->setJob('Chanteur')
+            ->setPicture('ladybeard.webp')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '03/08/1983'));
+        $manager->persist($c1);
+
+        $c2 = new Member();
+        $c2->setName('Reika')
+            ->setFirstName('Saiki')
+            ->setJob('Chanteur')
+            ->setPicture('SaikiReika.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '19/05/1992'));
+        $manager->persist($c2);
+
         $manager->flush();
 
         // other fixtures can get this object using the UserFixtures::ADMIN_USER_REFERENCE constant
@@ -70,5 +115,10 @@ class MemberFixtures extends Fixture
         $this->addReference(self::KORN_3, $a3);
         $this->addReference(self::KORN_4, $a4);
         $this->addReference(self::KORN_5, $a5);
+        $this->addReference(self::LPA_1, $b1);
+        $this->addReference(self::LPA_2, $b2);
+        $this->addReference(self::LPA_3, $b3);
+        $this->addReference(self::DL_1, $c1);
+        $this->addReference(self::DL_2, $c2);
     }
 }
