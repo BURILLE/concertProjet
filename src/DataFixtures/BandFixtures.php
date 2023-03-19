@@ -40,9 +40,8 @@ class BandFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->flush();
 
-        $manager->flush();
-        $b2 = new Band();
-        $b2->setName('Deadlift Lolita')
+        $b3 = new Band();
+        $b3->setName('Deadlift Lolita')
             ->setStyle('Metal Kawaii japonais')
             ->setPicture('deadlift_lolita.jpg')
             ->setCreationYear(new \DateTime(2017))
@@ -50,7 +49,33 @@ class BandFixtures extends Fixture implements DependentFixtureInterface
             ->addMember($this->getReference(MemberFixtures::DL_1))
             ->addMember($this->getReference(MemberFixtures::DL_2));
 
-        $manager->persist($b2);
+        $manager->persist($b3);
+
+        $manager->flush();
+
+        $b4 = new Band();
+        $b4->setName('Tenacious D')
+            ->setStyle('Rock')
+            ->setPicture('Tenacious.jpg')
+            ->setCreationYear(new \DateTime(1994))
+            ->setLastAlbumName('Post-Apocalypto')
+            ->addMember($this->getReference(MemberFixtures::TD_1))
+            ->addMember($this->getReference(MemberFixtures::TD_2));
+
+        $manager->persist($b4);
+
+        $manager->flush();
+
+        $b5 = new Band();
+        $b5->setName('Les Fatals Picards')
+            ->setStyle('Punk et rock français')
+            ->setPicture('LFP.jpg')
+            ->setCreationYear(new \DateTime(1997))
+            ->setLastAlbumName('Espèces menacées')
+            ->addMember($this->getReference(MemberFixtures::LFP_1))
+            ->addMember($this->getReference(MemberFixtures::LFP_2));
+
+        $manager->persist($b5);
 
         $manager->flush();
     }

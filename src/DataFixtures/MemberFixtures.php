@@ -21,6 +21,12 @@ class MemberFixtures extends Fixture
     public const LPA_3 = 'b3';
     public const DL_1 = 'c1';
     public const DL_2 = 'c2';
+    public const TD_1 = 'd1';
+    public const TD_2 = 'd2';
+    public const LFP_1 = 'e1';
+    public const LFP_2 = 'e2';
+    public const LFP_3 = 'e3';
+    public const LFP_4 = 'e4';
 
     /**
      * @param ObjectManager $manager
@@ -107,6 +113,38 @@ class MemberFixtures extends Fixture
             ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '19/05/1992'));
         $manager->persist($c2);
 
+        $d1 = new Member();
+        $d1->setName('Black')
+            ->setFirstName('Jack')
+            ->setJob('Chanteur, guitariste')
+            ->setPicture('jack-black.webp')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '28/08/1969'));
+        $manager->persist($d1);
+
+        $d2 = new Member();
+        $d2->setName('Gass')
+            ->setFirstName('Kyle')
+            ->setJob('Chanteur, guitariste')
+            ->setPicture('jack-black.webp')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '14/07/1960'));
+        $manager->persist($d2);
+
+        $e1 = new Member();
+        $e1->setName('Léger')
+            ->setFirstName('Paul')
+            ->setJob('Chanteur, kazoo, flutiste à coulisses, guitariste')
+            ->setPicture('paul_leger.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '31/08/1977'));
+        $manager->persist($e1);
+
+        $e2 = new Member();
+        $e2->setName('Honel')
+            ->setFirstName('Laurent')
+            ->setJob('Chanteur, guitariste, bassite, ')
+            ->setPicture('paul_leger.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '31/08/1977'));
+        $manager->persist($e2);
+
         $manager->flush();
 
         // other fixtures can get this object using the UserFixtures::ADMIN_USER_REFERENCE constant
@@ -120,5 +158,13 @@ class MemberFixtures extends Fixture
         $this->addReference(self::LPA_3, $b3);
         $this->addReference(self::DL_1, $c1);
         $this->addReference(self::DL_2, $c2);
+        $this->addReference(self::TD_1, $d1);
+        $this->addReference(self::TD_2, $d2);
+        $this->addReference(self::LFP_1, $e1);
+        $this->addReference(self::LFP_2, $e2);
+        /*
+        $this->addReference(self::LFP_3, $e3);
+        $this->addReference(self::LFP_4, $e4);
+        */
     }
 }

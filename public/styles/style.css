@@ -1,8 +1,21 @@
-body{
-    background-color: violet;
+
+body {
+
+    background-color: #97a5e8;
+
 }
 
 .container{
-    color: red;
-    background-color: blue;
+
+    background-color: #874233;
+}
+.container .container{
+
+    background-color: #388733;
+    display:inline-block;
+}.container .container .card{
+
+    display:inline-block;
+    margin: 33px;
+    height: 352px;
 }
