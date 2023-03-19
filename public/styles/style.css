@@ -13,9 +13,10 @@ body {
 
     background-color: #388733;
     display:inline-block;
-}.container .container .card{
+}
+
+.container .container .card{
 
     display:inline-block;
     margin: 33px;
-    height: 352px;
 }

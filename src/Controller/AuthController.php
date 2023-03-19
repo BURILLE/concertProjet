@@ -12,7 +12,7 @@ class AuthController extends AbstractController
 
     /**
      *
-     * @Route('/sign-in', name='app_sign_in')
+     * @return Response
      */
     #[Route('/sign-in', name: 'app_sign_in')]
     public function app_sign_in(AuthenticationUtils $authenticationUtils): Response
@@ -20,14 +20,14 @@ class AuthController extends AbstractController
 
 
         // get the login error if there is one
-        //$error = $authenticationUtils->getLastAuthenticationError();
+        $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
-        //$lastUsername = $authenticationUtils->getLastUsername();
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('auth/sign-in.html.twig', [
-            //'last_username' => $lastUsername,
-            //'error' => $error,
+        return $this->render('auth/form.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
         ]);
     }
 

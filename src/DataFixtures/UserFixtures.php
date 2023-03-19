@@ -17,5 +17,14 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
 
         $manager->flush();
+
+        $u1 = new User();
+        $u1->setUsername('cecile')
+            ->setRoles(['ROLE_ADMIN'])
+            ->setPassword('1234');
+
+        $manager->persist($u1);
+        $manager->flush();
+
     }
 }
