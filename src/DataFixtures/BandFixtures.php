@@ -73,7 +73,9 @@ class BandFixtures extends Fixture implements DependentFixtureInterface
             ->setCreationYear(new \DateTime(1997))
             ->setLastAlbumName('Espèces menacées')
             ->addMember($this->getReference(MemberFixtures::LFP_1))
-            ->addMember($this->getReference(MemberFixtures::LFP_2));
+            ->addMember($this->getReference(MemberFixtures::LFP_2))
+            ->addMember($this->getReference(MemberFixtures::LFP_3))
+            ->addMember($this->getReference(MemberFixtures::LFP_4));
 
         $manager->persist($b5);
 

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1> Plusieurs groupes se sont produits dans nos salles de concerts.</h1>
+        <div class="container">
+            {% for hall in hall %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <p>{{ hall.name|e }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

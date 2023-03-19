@@ -20,3 +20,7 @@ body {
     display:inline-block;
     margin: 33px;
 }
+
+.container .container .card .card-img-top{
+    height: 300px;
+}

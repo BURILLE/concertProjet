@@ -125,7 +125,7 @@ class MemberFixtures extends Fixture
         $d2->setName('Gass')
             ->setFirstName('Kyle')
             ->setJob('Chanteur, guitariste')
-            ->setPicture('jack-black.webp')
+            ->setPicture('kyleGass.jpeg')
             ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '14/07/1960'));
         $manager->persist($d2);
 
@@ -140,10 +140,26 @@ class MemberFixtures extends Fixture
         $e2 = new Member();
         $e2->setName('Honel')
             ->setFirstName('Laurent')
-            ->setJob('Chanteur, guitariste, bassite, ')
-            ->setPicture('paul_leger.jpg')
-            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '31/08/1977'));
+            ->setJob('Chanteur, guitariste, bassite, banjo')
+            ->setPicture('laurentHonel.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '21/10/1972'));
         $manager->persist($e2);
+
+        $e3 = new Member();
+        $e3->setName('Giraud')
+            ->setFirstName('Yves')
+            ->setJob('Chanteur, guitariste, banjo,ukulélé ')
+            ->setPicture('yvesGiraud.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '02/11/1977'));
+        $manager->persist($e3);
+
+        $e4 = new Member();
+        $e4->setName('Sauvagnargues')
+            ->setFirstName('Jean-Marc')
+            ->setJob('Chanteur, batteur,tambourin, xylophone guitariste, banjo,ukulélé ')
+            ->setPicture('JMSauvagnargues.jpg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '28/11/1967'));
+        $manager->persist($e4);
 
         $manager->flush();
 
@@ -162,9 +178,7 @@ class MemberFixtures extends Fixture
         $this->addReference(self::TD_2, $d2);
         $this->addReference(self::LFP_1, $e1);
         $this->addReference(self::LFP_2, $e2);
-        /*
         $this->addReference(self::LFP_3, $e3);
         $this->addReference(self::LFP_4, $e4);
-        */
     }
 }
