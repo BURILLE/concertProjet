@@ -18,13 +18,19 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HallController extends AbstractController{
     /**
+     * Render a group hall
+     *
+     * @param HallRepository $hallRepository
      * @return Response
      */
-    #[Route('/hall', name: 'hall')]
-    public function index(): Response
+    #[Route('/hall', name: 'hall_list')]
+    public function hallAll(HallRepository $hallRepository): Response
     {
+
+        $hall = $hallRepository->findAll();
         return $this->render('hall/list.html.twig', [
             'controller_name' => 'HallController',
+            'hall' => $hall,
         ]);
     }
 

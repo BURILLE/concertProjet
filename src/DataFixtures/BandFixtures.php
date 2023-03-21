@@ -80,6 +80,19 @@ class BandFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($b5);
 
         $manager->flush();
+
+        $b6 = new Band();
+        $b6->setName('Symfony')
+            ->setStyle('grandiose')
+            ->setPicture('symfony.png')
+            ->setCreationYear(new \DateTime(2005))
+            ->setLastAlbumName('6.2.7')
+            ->addMember($this->getReference(MemberFixtures::S_1));
+
+        $manager->persist($b6);
+
+
+        $manager->flush();
     }
 
     public function getDependencies(): array

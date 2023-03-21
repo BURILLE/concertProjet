@@ -11,7 +11,14 @@
             {% for member in band.members %}
 
                 <div class="card">
-                    <img src="{{ asset('images/'~ member.picture) }}" class="card-img-top" alt="...">
+                    {% if band.name =="Symfony" %}
+                            <video class="card-img-member" id="video-bg-elem" preload="auto" autoplay loop muted="muted" src="../../public/video/Never_Gonna_Give_You_Up.mp4" type="video/mp4"></video>
+
+                    {% endif %}
+                    {% if band.name !="Symfony" %}
+                        <img src="{{ asset('images/'~ member.picture) }}" class="card-img-top" alt="...">
+
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ member.name }} {{ member.firstname }}</h5>
                         <p class="card-text">Né le {{ member.birthDate|date('d-m-Y') }}.</p>
@@ -19,7 +26,11 @@
                     <div class="card-footer"><small class="text-muted">{{ member.job }}</small>
                     </div>
                 </div>
+
+
             {% endfor %}
+
+
 
         </div>
     </div>

@@ -27,6 +27,7 @@ class MemberFixtures extends Fixture
     public const LFP_2 = 'e2';
     public const LFP_3 = 'e3';
     public const LFP_4 = 'e4';
+    public const S_1 = 'f1';
 
     /**
      * @param ObjectManager $manager
@@ -161,9 +162,18 @@ class MemberFixtures extends Fixture
             ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '28/11/1967'));
         $manager->persist($e4);
 
+        $f1 = new Member();
+        $f1->setName('Astley')
+            ->setFirstName('Rick')
+            ->setJob('Chanteur')
+            ->setPicture('symfony_member.jpeg')
+            ->setBirthDate(\DateTime::createFromFormat("d/m/Y", '06/02/1966'));
+        $manager->persist($f1);
+
+
         $manager->flush();
 
-        // other fixtures can get this object using the UserFixtures::ADMIN_USER_REFERENCE constant
+        // other fixtures can get this object using the UtilisateurFixtures::ADMIN_USER_REFERENCE constant
         $this->addReference(self::KORN_1, $a1);
         $this->addReference(self::KORN_2, $a2);
         $this->addReference(self::KORN_3, $a3);
@@ -180,5 +190,6 @@ class MemberFixtures extends Fixture
         $this->addReference(self::LFP_2, $e2);
         $this->addReference(self::LFP_3, $e3);
         $this->addReference(self::LFP_4, $e4);
+        $this->addReference(self::S_1, $f1);
     }
 }

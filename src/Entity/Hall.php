@@ -22,6 +22,9 @@ class Hall
     #[ORM\Column]
     private ?bool $available = null;
 
+    #[ORM\Column]
+    private ?string $picture = null;
+
     #[ORM\ManyToOne(inversedBy: 'halls')]
     #[ORM\JoinColumn(nullable: true)]
     private ?ConcertHall $concertHall = null;
@@ -54,6 +57,18 @@ class Hall
     public function setCapacity(int $capacity): self
     {
         $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

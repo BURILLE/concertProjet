@@ -18,9 +18,17 @@ body {
 .container .container .card{
 
     display:inline-block;
+    vertical-align:middle;
     margin: 33px;
+    min-width: 20%;
+    max-width: 90%;
 }
 
 .container .container .card .card-img-top{
-    height: 300px;
+    max-width: 100%
+}
+
+.container .container .card .card-img-member{
+    max-width: 100%;
+    margin: auto;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,15 +10,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthController extends AbstractController
 {
-
-    /**
-     *
-     * @return Response
-     */
     #[Route('/sign-in', name: 'app_sign_in')]
     public function app_sign_in(AuthenticationUtils $authenticationUtils): Response
     {
-
+        if($this->getUser()){
+            return $this->redirectToRoute('homepage');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -25,7 +23,7 @@ class AuthController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('auth/form.html.twig', [
+        return $this->render('auth/sign-in.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
@@ -37,5 +35,6 @@ class AuthController extends AbstractController
         // controller can be blank: it will never be called!
         throw new \RuntimeException('Don\'t forget to activate logout in security.yaml');
     }
+
 
 }

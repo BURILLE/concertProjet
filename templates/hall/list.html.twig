@@ -6,9 +6,14 @@
         <div class="container">
             {% for hall in hall %}
             <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ asset('images/'~ hall.picture)  }}" alt="Card image for band">
                 <div class="card-body">
-                <p>{{ hall.name|e }}</p>
+                    <p class="card-text"><a href="{{ path('hall_show', {id: hall.id}) }}">{{ hall.name|e }}</a>
+                    </p>
+                </div>
             </div>
+
+
         {% endfor %}
         </div>
     </div>
