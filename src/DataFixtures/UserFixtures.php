@@ -16,8 +16,7 @@ class UserFixtures extends Fixture
         $u1 = new User();
         $u1->setUsername('cecile')
         ->setRoles(['ROLE_ADMIN'])
-        ->setPassword('123456')
-        ->setUuid(1);
+        ->setPassword('123456');
         $manager->persist($u1);
 
         $manager->flush();
