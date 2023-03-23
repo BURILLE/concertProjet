@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }

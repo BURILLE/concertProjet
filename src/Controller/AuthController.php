@@ -26,7 +26,7 @@ class AuthController extends AbstractController
             'controller_name' => 'AuthController',
         ]);
     }
-
+/*
 
     #[Route('/sign-in', name: 'app_sign_in')]
     public function app_sign_in(AuthenticationUtils $authenticationUtils): Response
@@ -45,6 +45,28 @@ class AuthController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('auth/sign-in.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
+    }
+*/
+
+    #[Route('/sign-in', name: 'app_sign_in')]
+    public function app_sign_in(AuthenticationUtils $authenticationUtils): Response
+    {
+
+        $user = "toto";
+        if($this->getUser()) {
+            $user = $this->getUser();
+        }
+
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('auth/sign-in.html.twig', [
+            'id' =>  $user,
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
